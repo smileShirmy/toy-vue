@@ -1,4 +1,4 @@
-## 实现目标
+## 基础实现
 
 ```html
 <div id="app">
@@ -49,7 +49,7 @@ o2.a
 // => {a: 1} "a"
 ```
 
-## effect
+## 实现 effect
 
 ```javascript
 // https://github.com/vuejs/vue-next/blob/master/packages/reactivity/__tests__/effect.spec.ts
