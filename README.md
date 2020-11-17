@@ -109,7 +109,7 @@ counter.num = 7
 ```javascript
 let effects = new Map()
 
-// 因为不知道当前的额 effect 是什么
+// 因为不知道当前的 effect 是什么
 // 因此需要一个 global 的 currentEffect
 let currentEffect = null
 
@@ -126,26 +126,23 @@ function reactive(object) {
     // 为了知道 effect 中存的是什么，需要写一个 getter 做依赖收集
     get(object, property) {
       if (currentEffect) {
-        if (!effects.has(object)) {
-          effects.set(object, new Map)
-        }
-        if (!effects.get(object).has(property)) {
-          effects.get(object).set(property, new Array)
-        }
+        if (!effects.has(object))
+             effects.set(object, new Map)
+        if (!effects.get(object).has(property))
+             effects.get(object).set(property, new Array)
         effects.get(object).get(property).push(currentEffect)
       }
       return object[property]
     },
     set(object, property, value) {
       object[property] = value
-      if (effect.has(object) && effect.get(object).has(property)) {
+      if (effects.has(object) && effects.get(object).has(property)) {
         for (let effect of effects.get(object).get(property)) {
-          // 结合下面的两个 dummy，effect 只被触发一次，说明成功了
           effect()
         }
       }
       return true
-    }
+    } 
   })
   return observed
 }
