@@ -1,14 +1,18 @@
 <div id="app">
+  <div>{{ value }}</div>
+  <input v-model="value">
+  <hr>
   <p>{{ message }}</p>
   <button v-on:click="reverseMessage">Reverse Message</button>
 </div>
 
 <script type="module">
-  import Vue from './toy-vue.js'
+  import Vue from './vue.js'
  
   const app = new Vue({
     el: '#app',
     data: {
+      value: "v-model",
       message: 'Hello Vue.js!'
     },
     methods: {
